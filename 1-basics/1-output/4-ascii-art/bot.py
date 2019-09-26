@@ -1,6 +1,6 @@
 # Display a box
 print("##########")
-print("#  *  *  #")
+print("#  o  o  #")
 print("#   __   #")
 print("##########")
 print("   ####      \\/")
