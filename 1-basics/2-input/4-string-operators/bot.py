@@ -5,7 +5,8 @@ energy_level = int(input())
 print("Please enter the shield level")
 sheild_level = int(input())
 
-print("""Health has been set
+print("""
+Health has been set
 
 Lives: """ +str(no_of_lives * '♥')+ """
 Energy: """ +str(energy_level *'♦')+ """
