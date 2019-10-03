@@ -9,7 +9,7 @@ if (weather == "sunny"):
     if ((weather == "sunny") and (mood == "happy")):
         print("I will go to the park and play!")
     else:
-        print("I will go to the garden and sunbathe")
+        print("I will go to the garden and sunbathe alone")
 elif ((weather == "rainy") or (weather == "foggy")):
     print("I will stay inside and read a book!")
 elif (weather == "cold"):
