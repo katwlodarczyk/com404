@@ -3,8 +3,13 @@ print("what is the weather outside?")
 weather = input()
 
 
-if ((weather == "sunny") and (weather == "warm")):
-    print("I will go outside and play!")
+if (weather == "sunny"):
+    print("whats my mood today?")
+    mood = input()
+    if ((weather == "sunny") and (mood == "happy")):
+        print("I will go to the park and play!")
+    else:
+        print("I will go to the garden and sunbathe")
 elif ((weather == "rainy") or (weather == "foggy")):
     print("I will stay inside and read a book!")
 elif (weather == "cold"):
