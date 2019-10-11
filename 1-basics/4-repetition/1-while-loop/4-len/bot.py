@@ -1,4 +1,4 @@
 print("Please enter a phrase:")
-phrase = len(input())
+phrase_input = len(input())
 
-print("Bop" * phrase)
+print("Bop" * phrase_input)
