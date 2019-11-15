@@ -62,8 +62,7 @@ class Gui(Tk):
                                     font= "Roboto 12",
                                     fg= "#fff",
                                     padx= 30,
-                                    pady= 10,
-                                   )
+                                    pady= 10)
         
         #handle events
 
