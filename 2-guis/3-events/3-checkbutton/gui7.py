@@ -50,8 +50,10 @@ class Gui(Tk):
         #handle events
         self.first_q_yes_Checkbutton.bind("<ButtonRelease-1>", self.__first_q_yes_Checkbutton_clicked)
         
+        
     def __first_q_yes_Checkbutton_clicked(self,event):
         self.first_q_no_Checkbutton.deselect()
+        
         
     def __add_first_q_no_Checkbutton(self):
         #create
@@ -72,13 +74,14 @@ class Gui(Tk):
         self.second_q_label= Label()
         self.second_q_label.grid(row=3, column=0, sticky=W)
         #style
-        self.second_q_label.configure( text=" 2.Passport has at least 6 motnths validity?",
+        self.second_q_label.configure( text=" 2.Passport has at least 6 months validity?",
                                   font="Roboto 16")
         #handle events
 
     def __add_second_q_yes_Checkbutton(self):
         #create
-        self.second_q_yes_Checkbutton= Checkbutton()
+        self.second_q_yes_value = IntVar()
+        self.second_q_yes_Checkbutton= Checkbutton(variable=self.second_q_yes_value)
         self.second_q_yes_Checkbutton.grid(row=4, column=1, sticky=W)
         #style
         self.second_q_yes_Checkbutton.configure( text="yes",
@@ -88,6 +91,7 @@ class Gui(Tk):
         
     def __second_q_yes_Checkbutton_clicked(self,event):
         self.second_q_no_Checkbutton.deselect()
+        second_q_value= IntVar()
 
     def __add_second_q_no_Checkbutton(self):
          #create
@@ -114,7 +118,8 @@ class Gui(Tk):
 
     def __add_third_q_yes_Checkbutton(self):
         #create
-        self.third_q_yes_Checkbutton= Checkbutton()
+        self.third_q_yes_value = IntVar()
+        self.third_q_yes_Checkbutton= Checkbutton(variable= self.third_q_yes_value)
         self.third_q_yes_Checkbutton.grid(row=6, column=1, sticky=W)
         #style
         self.third_q_yes_Checkbutton.configure( text="yes",
@@ -124,6 +129,7 @@ class Gui(Tk):
         
     def __third_q_yes_Checkbutton_clicked(self,event):
         self.third_q_no_Checkbutton.deselect()
+        third_q_value= IntVar()
 
     def __add_third_q_no_Checkbutton(self):
         #create
@@ -151,4 +157,11 @@ class Gui(Tk):
         self.check_button.bind("<ButtonRelease-1>", self.__check_button_clicked)
 
     def __check_button_clicked(self,event):
-        #if (q1yes==1 and q2yes==1 and q3yes==1): message
+        first_q_yes_value = self.first_q_yes_value.get()
+        second_q_yes_value = self.second_q_yes_value.get()
+        third_q_yes_value = self.third_q_yes_value.get()
+        
+        if (first_q_yes_value==1 and second_q_yes_value==1 and third_q_yes_value==1):
+            messagebox.showinfo("Passport checker", "You have passed the check!")
+        else:
+            messagebox.showinfo("Passport checker","You failed the check!")
