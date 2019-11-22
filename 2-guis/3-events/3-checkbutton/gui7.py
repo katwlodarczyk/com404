@@ -37,6 +37,7 @@ class Gui(Tk):
         self.first_q_label.configure( text=" 1.Photo matches face?",
                                   font="Roboto 16")
         #handle events
+        
 
     def __add_first_q_yes_Checkbutton(self):
         #create
@@ -46,7 +47,11 @@ class Gui(Tk):
         self.first_q_yes_Checkbutton.configure( text="yes",
                                                 font="Roboto 16")
         #handle events
-    
+        self.first_q_yes_Checkbutton.bind("<ButtonRelease-1>", self.__first_q_yes_Checkbutton_clicked)
+        
+    def __first_q_yes_Checkbutton_clicked(self,event):
+        self.first_q_no_Checkbutton.deselect()
+        
     def __add_first_q_no_Checkbutton(self):
         #create
         self.first_q_no_Checkbutton= Checkbutton()
@@ -55,6 +60,10 @@ class Gui(Tk):
         self.first_q_no_Checkbutton.configure(text="no",
                                               font="Roboto 16")
         #handle events
+        self.first_q_no_Checkbutton.bind("<ButtonRelease-1>", self.__first_q_no_Checkbutton_clicked)
+        
+    def __first_q_no_Checkbutton_clicked(self,event):
+        self.first_q_yes_Checkbutton.deselect()
 
 
     def __add_second_q_label(self):
@@ -74,6 +83,10 @@ class Gui(Tk):
         self.second_q_yes_Checkbutton.configure( text="yes",
                                                 font="Roboto 16")
         #handle events
+        self.second_q_yes_Checkbutton.bind("<ButtonRelease-1>", self.__second_q_yes_Checkbutton_clicked)
+        
+    def __second_q_yes_Checkbutton_clicked(self,event):
+        self.second_q_no_Checkbutton.deselect()
 
     def __add_second_q_no_Checkbutton(self):
          #create
@@ -84,6 +97,10 @@ class Gui(Tk):
                                               font="Roboto 16")
                          
         #handle events
+        self.second_q_no_Checkbutton.bind("<ButtonRelease-1>", self.__second_q_no_Checkbutton_clicked)
+        
+    def __second_q_no_Checkbutton_clicked(self,event):
+        self.second_q_yes_Checkbutton.deselect()
 
     def __add_third_q_label(self):
         #create
@@ -102,6 +119,10 @@ class Gui(Tk):
         self.third_q_yes_Checkbutton.configure( text="yes",
                                                 font="Roboto 16")
         #handle events
+        self.third_q_yes_Checkbutton.bind("<ButtonRelease-1>", self.__third_q_yes_Checkbutton_clicked)
+        
+    def __third_q_yes_Checkbutton_clicked(self,event):
+        self.third_q_no_Checkbutton.deselect()
 
     def __add_third_q_no_Checkbutton(self):
         #create
@@ -111,6 +132,10 @@ class Gui(Tk):
         self.third_q_no_Checkbutton.configure( text="no",
                                                 font="Roboto 16")
         #handle events
+        self.third_q_no_Checkbutton.bind("<ButtonRelease-1>", self.__third_q_no_Checkbutton_clicked)
+        
+    def __third_q_no_Checkbutton_clicked(self,event):
+        self.third_q_yes_Checkbutton.deselect()
 
     def __add_check_button(self):
         #create
