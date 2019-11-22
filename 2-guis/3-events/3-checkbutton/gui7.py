@@ -41,7 +41,8 @@ class Gui(Tk):
 
     def __add_first_q_yes_Checkbutton(self):
         #create
-        self.first_q_yes_Checkbutton= Checkbutton()
+        self.first_q_yes_value = IntVar()
+        self.first_q_yes_Checkbutton= Checkbutton(variable=self.first_q_yes_value)
         self.first_q_yes_Checkbutton.grid(row=2, column=1, sticky=W)
         #style
         self.first_q_yes_Checkbutton.configure( text="yes",
@@ -147,3 +148,7 @@ class Gui(Tk):
                                      relief= "solid",
                                      text="Check")
         #handle events
+        self.check_button.bind("<ButtonRelease-1>", self.__check_button_clicked)
+
+    def __check_button_clicked(self,event):
+        #if (q1yes==1 and q2yes==1 and q3yes==1): message
