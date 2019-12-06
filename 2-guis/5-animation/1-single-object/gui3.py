@@ -10,9 +10,8 @@ class AnimatedGui(Tk):
         self.ball_image = PhotoImage(file="ball.gif")
         
         # set window attributes
-        self.configure(height=500,
-                       width=500,
-                       bg="#73b504")
+        self.configure(height=750,
+                       width=750)
 
         # set animation attributes
         self.ball_x_pos = 240
