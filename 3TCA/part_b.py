@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 
-
 class Gui(Tk):
     def __init__(self):
         super().__init__()
@@ -155,4 +154,3 @@ class Gui(Tk):
 if (__name__ == "__main__"):
     gui = Gui()
     gui.mainloop()
-
