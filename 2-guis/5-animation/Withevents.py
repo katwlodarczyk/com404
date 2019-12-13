@@ -9,7 +9,7 @@ class Gui(Tk):
         super().__init__()
         
         # load resources
-        self.plane_image = PhotoImage(file="C:/Users/dcarter/Documents/code/com404/com404/2-guis/5-animation/3-varying-ticks/plane.gif")
+        self.plane_image = PhotoImage(file="plane.gif")
         # set window attributes
         self.title("Gui")
         self.configure(height=500,width=500)
