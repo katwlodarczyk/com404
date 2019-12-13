@@ -1,84 +1,96 @@
 from tkinter import *
-import time
 from tkinter import messagebox
-import sys
+import time
 
-# the class
-class AnimatedGui(Tk):
+class Gui(Tk):
+
+    # initialise window
     def __init__(self):
         super().__init__()
         
         # load resources
-        self.pikachu_image = PhotoImage(file="/Users/seanypollard/Documents/Uni/Programming/com404/02-guis/05-animation/04-with-events/img/pikachu.gif")
-        self.poke_ball_image = PhotoImage(file="/Users/seanypollard/Documents/Uni/Programming/com404/02-guis/05-animation/04-with-events/img/PokeBall.gif")
-        
+        self.plane_image = PhotoImage(file="C:/Users/dcarter/Documents/code/com404/com404/2-guis/5-animation/3-varying-ticks/plane.gif")
         # set window attributes
-        self.configure(height=500,
-                       width=500)
-
-        # set animation attributes
-        self.pikachu_x_pos = 400
-        self.pikachu_y_pos = 200
-
-        self.poke_ball_x_pos = 0
-        self.poke_ball_y_pos = 170
-        self.poke_ball_x_change = 1
-        self.poke_ball_y_change = 1
-
-        self.num_ticks = 0
+        self.title("Gui")
+        self.configure(height=500,width=500)
+        
+        #set animation components
+        self.plane_x_pos = 100
+        self.plane_y_pos = 250
+        self.plane_x_change = 1
+        self.plane_y_change = 0
+        self.num_tick = 0
 
         # add components
-        self.add_pikachu_image_label()
-        self.add_poke_ball_image_label()
-        self.add_change_button()
- 
-        
-        # start the timer
+        self.__add_plane_image_label()
+        self.__add_up_button()
+        self.__add_down_button()
+
+        #start the timer
         self.tick()
-        
-    # the timer tick function    
+
     def tick(self):
-        self.poke_ball_x_pos += self.poke_ball_x_change
-        self.poke_ball_y_pos += self.poke_ball_y_change
-        self.poke_ball_image_label.place(x=self.poke_ball_x_pos, 
-                                        y=self.poke_ball_y_pos)
+        self.num_tick +=1
 
-        self.num_ticks += 1
+        if self.num_tick % 1 == 0:
+            if self.plane_x_pos >= 450 or self.plane_x_pos <=0:
+                self.plane_x_change *= -1
 
-        if self.poke_ball_x_pos >= 400:
-            if self.poke_ball_y_pos >=150 and self.poke_ball_y_pos <= 300:
-                messagebox.showinfo("Congrats!", "You caught Pikachu!")
-                sys.exit()
-        if self.num_ticks == 500:
-            messagebox.showwarning("Oh no!","You did not catch Pickachu!")
-            sys.exit()
+            self.plane_x_pos = self.plane_x_pos+self.plane_x_change
+
+            if not (self.plane_y_pos >=450 and self.plane_y_change == 1) and not (self.plane_y_pos <=0 and self.plane_y_change == -1):
+                self.plane_y_pos = self.plane_y_pos+self.plane_y_change
+
+            self.plane_image_label.place(x=self.plane_x_pos,y=self.plane_y_pos)
+
+        self.after(5, self.tick)
+
+    #the image
+    def __add_plane_image_label(self):
+        self.plane_image_label = Label()
+        self.plane_image_label.place(x=self.plane_x_pos,y=self.plane_y_pos)
+        self.plane_image_label.configure(image=self.plane_image)
+
+    def __add_up_button(self):
+        #create
+        self.up_button = Button()
+        self.up_button.place(x=125,y=425)
+
+        #style
+        self.up_button.configure(
+            width=10,
+            bg="#fed",
+            text="UP"
+            )
+
+        #events
+        self.up_button.bind("<Button-1>",self.__up_button_clicked)  
+        self.up_button.bind("<ButtonRelease-1>",self.__up_button_released)
+
+    def __add_down_button(self):
+        #create
+        self.down_button = Button()
+        self.down_button.place(x=275,y=425)
+
+        #style
+        self.down_button.configure(
+            width=10,
+            bg="#fed",
+            text="down"
+            )
         
-        self.after(10, self.tick)
+        #events
+        self.down_button.bind("<Button-1>",self.__down_button_clicked)  
+        self.down_button.bind("<ButtonRelease-1>",self.__down_button_released)
 
-    # the components
-    def add_poke_ball_image_label(self):
-        self.poke_ball_image_label = Label()
-        self.poke_ball_image_label.place(x=self.poke_ball_x_pos,
-                                            y=self.poke_ball_y_pos)
-        self.poke_ball_image_label.configure(image=self.poke_ball_image)
+    def __up_button_clicked(self,event):
+        self.plane_y_change = -1
 
-    def add_pikachu_image_label(self):
-        self.pikachu_image_label = Label()
-        self.pikachu_image_label.place(x=self.pikachu_x_pos,
-                                            y=self.pikachu_y_pos)
-        self.pikachu_image_label.configure(image=self.pikachu_image)
+    def __up_button_released(self,event):
+        self.plane_y_change = 0
 
-    def add_change_button(self):
-        self.change_button = Button()
-        self.change_button.place(x=225,
-                                    y=450)
-        self.change_button.configure(text="Up / Down")
-        self.change_button.bind("<ButtonRelease-1>", self.__change_button_clicked)
+    def __down_button_clicked(self,event):
+        self.plane_y_change = 1
 
-    def __change_button_clicked(self, event):
-        self.poke_ball_y_change *= -1
-
-# the object
-if __name__ == "__main__":
-    gui = AnimatedGui()    
-    gui.mainloop() 
+    def __down_button_released(self,event):
+        self.plane_y_change = 0
